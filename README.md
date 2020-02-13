@@ -1,2 +1,5 @@
-# kotlin
-study
+# Kotlin
+
+![Kotlin](doc/img/Kotlin.png)
+
+study 
