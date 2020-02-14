@@ -14,16 +14,6 @@ Kotlin Koans
 https://www.manning.com/books/kotlin-in-action
 
 
-### Kotlin's Philosophy
-
-- 실용성
-
-- 간결성 
-
-- 안정성
-
-- 상호운용성
-
 ## 스터디 방법 
 
 8주 완성으로 진행하며, 매주 한 명씩 돌아가면서 수업을 리딩한다. 
