@@ -26,6 +26,14 @@ https://www.manning.com/books/kotlin-in-action
 
 과제는 간단하게 테스트 코드 관련 주제로 만든다. 
 
+## 스터디 시간 및 장소 
+
+매주 x요일 20:00 ~ 22:00 2시간 진행한다. 
+
+개인 일정으로 인한 요일, 시간 변경이 가능하다. 최소 일주일 전에 announce 해야한다. (물론 전원이 동의해야 한다.) 
+
+장소 : 카카오 
+
 ### 1주차 
 
 ### 2주차 
@@ -47,6 +55,12 @@ https://www.manning.com/books/kotlin-in-action
 - 지각 : 30분당 2500원
 - 과제 : 만원
 
+
+## 기타 
+
+### 참고 동영상 
+
+- https://www.youtube.com/watch?v=8RIsukgeUVw&t=35s 
 
 
 
