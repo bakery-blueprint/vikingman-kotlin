@@ -35,6 +35,11 @@ https://www.manning.com/books/kotlin-in-action
 장소 : 카카오 
 
 ### 1주차 
+- Getting Started Kotlin !! (1장)
+
+- 코틀린 기초 (2장)
+
+- 함수 정의와 호출(3장)
 
 ### 2주차 
 
