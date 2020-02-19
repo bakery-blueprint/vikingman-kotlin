@@ -13,6 +13,13 @@ internal class BakeryTest {
      */
     @Test
     fun verifyWhen() {
+        fun verify(bakery: Bakery) = when(bakery) {
+            Bakery.DOUGHNUT -> "던킨~!"
+            Bakery.CROISSANT -> "파리바게트~!"
+        }
+
+        println(verify(Bakery.DOUGHNUT))
+        println(verify(Bakery.CROISSANT))
 
     }
     /**
@@ -21,12 +28,17 @@ internal class BakeryTest {
     @Test
     fun replaceIfToB() {
         val data = "abc"
-        if ("abc".equals(data)) {
-            println("equals")
-        }  else if (data.length == 4) {
-            println("4!!")
-        } else {
-            throw IllegalArgumentException("Unknown")
+
+        when{
+            data.equals("abc") -> {
+                println("equals")
+                "equals"
+            }
+            (data.length == 4) -> {
+                println("4!!")
+                "4!!"
+            }
+            else -> IllegalArgumentException("Unknown")
         }
     }
 
