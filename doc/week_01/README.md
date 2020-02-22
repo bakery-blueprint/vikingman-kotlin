@@ -26,7 +26,7 @@
  
  ## 3장 함수 
  
- ### 확장 함수 
+### 확장 함수  && 프로퍼티
  
 개발자 중 코틀린에 대해서 장점을 말해보라고 했을 때 
 
@@ -37,3 +37,7 @@
 코틀린의 최고 사기는 확장 함수이다. 
  
 - https://github.com/spring-projects/spring-framework/search?l=kotlin
+
+### 중위 호출과 구조 분해 선언 
+
+- 1 to "one" => Par => val (number, name)
