@@ -36,6 +36,4 @@
 
 코틀린의 최고 사기는 확장 함수이다. 
  
-  
- - https://github.com/spring-projects/spring-framework/search?l=kotlin
- 
+- https://github.com/spring-projects/spring-framework/search?l=kotlin
