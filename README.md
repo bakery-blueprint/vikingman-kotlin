@@ -2,6 +2,10 @@
 
 ![Kotlin](doc/img/Kotlin.png)
 
+### Naming 
+
+이름은 Java와 같이 섬 이름을 따서 [Kotlin Island](https://bit.ly/32bKRkY)에서 유래했다. 
+
 ### Getting Started Kotlin 
 
 Kotlin Koans 
