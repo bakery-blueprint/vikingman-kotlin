@@ -16,7 +16,7 @@ internal class BaseServiceTest {
             try{
                 service.service()
             }catch (ie : IllegalStateException){
-                throw WrapperException(ie);
+                throw WrapperException(ie)
             }
         }
     }
