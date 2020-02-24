@@ -12,6 +12,14 @@ internal class BaseServiceTest {
     @Test
     fun catch() {
         val service = BaseService()
-        assertFailsWith<WrapperException>{ service.service() }
+        fun validateCatch(service: BaseService) {
+            try {
+                service.service()
+            } catch (e: IllegalStateException) {
+                throw WrapperException(e)
+            }
+        }
+
+        assertFailsWith<WrapperException> { validateCatch(service) }
     }
 }
