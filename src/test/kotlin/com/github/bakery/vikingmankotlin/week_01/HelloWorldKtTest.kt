@@ -1,5 +1,6 @@
 package com.github.bakery.vikingmankotlin.week_01
 
+import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 
@@ -10,10 +11,14 @@ internal class HelloWorldKtTest {
     @Test
     fun hello() {
         // given
+        val expected = "hello";
+        val helloWorld = HelloWorld()
 
         // when
+        val result = helloWorld.hello()
 
         // then
+        assertThat(result).isEqualTo(expected);
     }
 
     /**
@@ -24,7 +29,7 @@ internal class HelloWorldKtTest {
         // given
         val hello = "hello";
 
-
+        println("${hello}")
         // no assert
     }
 
@@ -33,11 +38,22 @@ internal class HelloWorldKtTest {
      */
     @Test
     fun get() {
+        // given
+        val data = "hello"
+        val customAccessor = CustomAccessor(data)
 
+        // when
+        val result = customAccessor.last
+
+        // then
+        assertThat(result).isEqualTo(data.get(data.lastIndex))
     }
 
 }
 
 class CustomAccessor(var data: String) {
-
+    var last: Char = ' '
+        get() {
+            return data[data.lastIndex]
+        }
 }
