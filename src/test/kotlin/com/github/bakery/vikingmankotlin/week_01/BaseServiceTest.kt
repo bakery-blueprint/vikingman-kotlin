@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith
 
 internal class BaseServiceTest {
-    class WrapperException(e : Exception) : RuntimeException()
+    class WrapperException(e: Exception) : RuntimeException()
 
     /**
      * catch 해서 테스트 코드를 완성하세요..!!
@@ -12,6 +12,12 @@ internal class BaseServiceTest {
     @Test
     fun catch() {
         val service = BaseService()
-        assertFailsWith<WrapperException>{ service.service() }
+        assertFailsWith<WrapperException> {
+            try {
+                service.service()
+            } catch (e: IllegalStateException) {
+                throw WrapperException(e)
+            }
+        }
     }
 }

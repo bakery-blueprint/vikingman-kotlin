@@ -1,7 +1,7 @@
 package com.github.bakery.vikingmankotlin.week_01
 
 import org.junit.jupiter.api.Test
-import java.lang.IllegalArgumentException
+import kotlin.test.assertEquals
 
 internal class BakeryTest {
     /**
@@ -13,20 +13,31 @@ internal class BakeryTest {
      */
     @Test
     fun verifyWhen() {
+        fun verify(b: Bakery) = when (b) {
+            Bakery.DOUGHNUT -> "던킨"
+            Bakery.CROISSANT -> "크로와상"
+        }
 
+        assertEquals("던킨", verify(Bakery.DOUGHNUT))
+        assertEquals("크로와상", verify(Bakery.CROISSANT))
     }
+
     /**
      * if를 when으로 변경하세요.
      */
     @Test
     fun replaceIfToB() {
         val data = "abc"
-        if ("abc".equals(data)) {
-            println("equals")
-        }  else if (data.length == 4) {
-            println("4!!")
-        } else {
-            throw IllegalArgumentException("Unknown")
+        when {
+            "abc" == data -> {
+                println("equals")
+            }
+            data.length == 4 -> {
+                println("4!!")
+            }
+            else -> {
+                throw IllegalArgumentException("Unknown")
+            }
         }
     }
 

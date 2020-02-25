@@ -1,6 +1,8 @@
 package com.github.bakery.vikingmankotlin.week_01
 
 import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 
 internal class HelloWorldKtTest {
@@ -10,10 +12,13 @@ internal class HelloWorldKtTest {
     @Test
     fun hello() {
         // given
+        val helloWorld = HelloWorld()
 
         // when
+        val result = helloWorld.hello()
 
         // then
+        assertEquals("hello", result)
     }
 
     /**
@@ -24,7 +29,7 @@ internal class HelloWorldKtTest {
         // given
         val hello = "hello";
 
-
+        print("Tire $hello~")
         // no assert
     }
 
@@ -33,11 +38,14 @@ internal class HelloWorldKtTest {
      */
     @Test
     fun get() {
-
+        val target = CustomAccessor("hello")
+        
+        assertTrue(target.isHello)
     }
 
 }
 
 class CustomAccessor(var data: String) {
-
+    val isHello: Boolean
+        get() = "hello" == data
 }
