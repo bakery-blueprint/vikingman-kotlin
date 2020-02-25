@@ -6,8 +6,8 @@ import org.springframework.validation.Errors
 /**
  *
  * 1. User validate를 테스트 코드로 검증해보자.
- * 2. validate를 확장함수로 변경해서 처리해보자.
- *
+ * 2. validate를 확장함수로 변경해서 처리해보자. 
+ *   (+ if 없애기)
  */
 class User(val name : String, val age: Int) {
     fun validate(): Errors {
