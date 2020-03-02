@@ -2,11 +2,19 @@
 
 ![Kotlin](doc/img/Kotlin.png)
 
+### Naming 
+
+이름은 Java와 같이 섬 이름을 따서 [Kotlin Island](https://bit.ly/32bKRkY)에서 유래했다. 
+
 ### Getting Started Kotlin 
 
 Kotlin Koans 
 
 - reference : https://play.kotlinlang.org/koans/overview
+
+Spring Kotlin
+
+- reference : https://docs.spring.io/spring-framework/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/kotlin.html 
 
 ### Books
 
@@ -67,8 +75,8 @@ https://www.manning.com/books/kotlin-in-action
 
 - https://www.youtube.com/watch?v=8RIsukgeUVw&t=35s 
 
-
-
+### 워크샵
+- 위치 : https://bit.ly/32bKRkY
 
 
 
