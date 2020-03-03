@@ -9,20 +9,21 @@ import org.springframework.validation.Errors
  * 2. validate를 확장함수로 변경해서 처리해보자. 
  *   (+ if 없애기)
  */
-class User(val name : String, val age: Int) {
-    fun validate(): Errors {
-        val errors = BindException(this, User::class.qualifiedName.orEmpty())
-        if (name.isEmpty()) {
-            errors.rejectValue("name", "", "name is empty")
-        }
+class User(val name : String, val age: Int)
 
-        if (age <= 0) {
-            errors.rejectValue("age", "", "age is less than 0")
-        }
-
-        return errors;
+fun User.validate(): Errors {
+    val errors = BindException(this, User::class.qualifiedName.orEmpty())
+    if (name.isEmpty()) {
+        errors.rejectValue("name", "", "name is empty")
     }
+
+    if (age <= 0) {
+        errors.rejectValue("age", "", "age is less than 0")
+    }
+
+    return errors;
 }
+
 fun main(args : Array<String>) {
     val user = User("hotire", 0)
     val errors = user.validate()
