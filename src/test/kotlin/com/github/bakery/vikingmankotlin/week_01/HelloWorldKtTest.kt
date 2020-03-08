@@ -2,6 +2,7 @@ package com.github.bakery.vikingmankotlin.week_01
 
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
 
 
 internal class HelloWorldKtTest {
@@ -31,6 +32,7 @@ internal class HelloWorldKtTest {
 
         println("${hello}")
         // no assert
+        println("$hello")
     }
 
     /**
