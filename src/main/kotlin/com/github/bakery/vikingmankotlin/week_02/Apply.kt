@@ -6,13 +6,20 @@ import org.springframework.validation.Errors
 // TODO: apply {} 를 사용하도록 변경 해봅시다.
 fun User.validate(): Errors {
     val errors = BindException(this, User::class.qualifiedName.orEmpty())
-    if (name.isEmpty()) {
-        errors.rejectValue("name", "", "name is empty")
-    }
 
-    if (age <= 0) {
-        errors.rejectValue("age", "", "age is less than 0")
+    errors.apply {
+        if (name.isEmpty()) {
+            errors.rejectValue("name", "", "name is empty")
+        }
+        if (age <= 0) {
+            errors.rejectValue("age", "", "age is less than 0")
+        }
     }
+    return errors
+}
 
-    return errors;
+
+fun main(){
+    val user = BasicUser("", 3)
+    println(user.validate())
 }
