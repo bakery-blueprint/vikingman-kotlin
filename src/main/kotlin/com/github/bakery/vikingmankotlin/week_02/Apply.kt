@@ -14,5 +14,5 @@ fun User.validate(): Errors {
         errors.rejectValue("age", "", "age is less than 0")
     }
 
-    return errors;
+    return errors
 }
