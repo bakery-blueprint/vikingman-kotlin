@@ -12,23 +12,28 @@ val database: MutableMap<String, MutableMap<String, String>> = mutableMapOf(
 
 
 
-class Databaseㅇ(val id: String) {
+class DatabaseDelegate(val id: String) {
 
     operator fun getValue(thisRef: Any?, prop: KProperty<*>): String {
-        return ""
+        return database[id]?.get(prop.name) ?: throw IllegalArgumentException("그런거없음!")
     }
 
     operator fun setValue(thisRef: Any?, prop: KProperty<*>, value: String) {
+        database[id]?.put(prop.name, value) ?: throw IllegalArgumentException("그런거없음!")
     }
 
 }
 
 class DatabaseUser(userId: String) {
-//    var name: String by DatabaseDelegate(userId)
-//    var email: String by DatabaseDelegate(userId)
+    var name: String by DatabaseDelegate(userId)
+    var email: String by DatabaseDelegate(userId)
 }
 
 fun main(){
 
     /* 데이터베이스에서 user id에 맞는 데이터를 가지고 오는 Delegate 를 완성하시오 */
+
+    val user1 = DatabaseUser("1")
+    println(user1.name)
+    println(user1.email)
 }

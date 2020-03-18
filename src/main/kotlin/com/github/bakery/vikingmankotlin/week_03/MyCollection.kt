@@ -7,5 +7,11 @@ class ListFactory{
 
 
 fun main(){
+    val factory = ListFactory()
+    val mutable: MutableList<Int> = factory.source
+    val immutable: List<Int> = factory.source
 
+    mutable[0] = 1000
+
+    println(immutable[0])
 }
