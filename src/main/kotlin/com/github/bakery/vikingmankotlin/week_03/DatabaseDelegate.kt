@@ -12,20 +12,21 @@ val database: MutableMap<String, MutableMap<String, String>> = mutableMapOf(
 
 
 
-class Databaseㅇ(val id: String) {
+class DatabaseDelegate(val id: String) {
 
     operator fun getValue(thisRef: Any?, prop: KProperty<*>): String {
-        return ""
+        return database[id].let{ it?.get(prop.name) }.orEmpty()
     }
 
     operator fun setValue(thisRef: Any?, prop: KProperty<*>, value: String) {
+        database[id].let { it?.set(prop.name, value)}
     }
 
 }
 
 class DatabaseUser(userId: String) {
-//    var name: String by DatabaseDelegate(userId)
-//    var email: String by DatabaseDelegate(userId)
+    var name: String by DatabaseDelegate(userId)
+    var email: String by DatabaseDelegate(userId)
 }
 
 fun main(){
