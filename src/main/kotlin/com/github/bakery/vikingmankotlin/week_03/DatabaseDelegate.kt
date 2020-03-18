@@ -12,23 +12,40 @@ val database: MutableMap<String, MutableMap<String, String>> = mutableMapOf(
 
 
 
-class Databaseㅇ(val id: String) {
+class DatabaseDelegate(val id: String) {
 
     operator fun getValue(thisRef: Any?, prop: KProperty<*>): String {
-        return ""
+        return findColumnByUserId(prop.name, this.id)
     }
 
     operator fun setValue(thisRef: Any?, prop: KProperty<*>, value: String) {
+        setColumnByUserId(prop.name, this.id, value)
+    }
+
+    private fun findColumnByUserId(column: String, userId: String): String {
+        return database[userId]?.get(column) ?: "$column is empty"
+    }
+
+    private fun setColumnByUserId(column: String, userId: String, value:String) {
+        database[userId]?.put(column, value)
     }
 
 }
 
 class DatabaseUser(userId: String) {
-//    var name: String by DatabaseDelegate(userId)
-//    var email: String by DatabaseDelegate(userId)
+    var name: String by DatabaseDelegate(userId)
+    var email: String by DatabaseDelegate(userId)
+
+    override fun toString(): String {
+        return "name : $name, email : $email"
+    }
 }
 
 fun main(){
 
-    /* 데이터베이스에서 user id에 맞는 데이터를 가지고 오는 Delegate 를 완성하시오 */
+    val databaseUser = DatabaseUser("1")
+    println(databaseUser)
+    databaseUser.email = "434@34.com"
+    println(databaseUser)
+
 }

@@ -7,5 +7,13 @@ class ListFactory{
 
 
 fun main(){
+    val factory = ListFactory()
+    val firstList: List<Int> = factory.source
+    val secondList: MutableList<Int> = factory.source
 
+    println(firstList)
+
+    secondList.removeAt(0)
+
+    println(firstList)
 }
