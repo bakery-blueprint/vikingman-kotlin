@@ -7,5 +7,15 @@ class ListFactory{
 
 
 fun main(){
+    val list:List<Int> = ListFactory().source
+    val mutableList:MutableList<Int> = ListFactory().source
+
+    println(list)
+
+    mutableList.add(5)
+
+    println(list)
+
+    //????
 
 }
