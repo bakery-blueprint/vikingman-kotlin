@@ -11,9 +11,8 @@ inline fun <reified T> String.toKotlinObject(): T {
 
 fun main() {
     val json = """{"name":"엄뉴", "age":27}"""
-    println(json.toKotlinObject<User>().age)
-    println(json.toKotlinObject<User>().name)
-
+    println(json.toKotlinObject<User>().age == 27)
+    println(json.toKotlinObject<User>().name == "엄뉴")
 
 
     // 위의 json을 User로 받아서 이름과 나이를 출력해보고 간단한 테스트를 작성해보세요!
