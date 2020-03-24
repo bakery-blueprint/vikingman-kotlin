@@ -9,8 +9,6 @@ class ShoppingCart(val bakery: Bakery, val itemCount: Int, val itemCost: Int)
 // 함수 정의
 // fun ...() ...
 
-
 fun main() {
     val cart = ShoppingCart(Bakery.DOUGHNUT, 3, 1000)
-
 }
