@@ -29,5 +29,5 @@ fun getDiscountPercent(): (Bakery) -> Int = { bakery ->
 
 fun main() {
     val cart = ShoppingCart(Bakery.DOUGHNUT, 3, 1000)
-    println(cart.getTotalPrice { getDiscountPercent })
+    println(cart.getTotalPrice(getDiscountPercent()))
 }
