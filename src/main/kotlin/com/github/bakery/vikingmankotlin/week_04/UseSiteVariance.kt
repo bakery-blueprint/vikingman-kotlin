@@ -1,7 +1,7 @@
 package com.github.bakery.vikingmankotlin.week_04
 
 
-fun copy(from: Array<out Any>, to: Array<Any>) {
+fun copy(from: Array<out Any>, to: Array<in Any>) {
     for (i in from.indices) {
         to[i] = from[i]
     }
