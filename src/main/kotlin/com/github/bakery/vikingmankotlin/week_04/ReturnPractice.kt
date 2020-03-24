@@ -3,14 +3,24 @@ package com.github.bakery.vikingmankotlin.week_04
 data class Person(val name: String, val salary: Int)
 
 fun lookForEomnew(people: List<Person>) {
-    people.forEach {
+    people.forEach label@ {
         if (it.name == "엄뉴") {
             println("발견!!")
-            return
+            return@label
         }
     }
     println("여기도 출력됐으면 좋겠어요!!") // 해당 구문이 출력될 수 있도록 변경해보세요! (2가지 이상의 방법)
 }
+
+fun lookForEomnewWithAnonymousFunction(people: List<Person>) {
+    people.forEach(fun (person) {
+        if (person.name == "엄뉴") {
+            println("발견!!")
+        }
+    })
+    println("여기도 출력됐으면 좋겠어요!!") // 해당 구문이 출력될 수 있도록 변경해보세요! (2가지 이상의 방법)
+}
+
 
 fun main() {
     val people =
@@ -20,4 +30,5 @@ fun main() {
             Person("타이어", 100000000))
 
     lookForEomnew(people)
+    lookForEomnewWithAnonymousFunction(people)
 }
