@@ -3,6 +3,10 @@ package com.github.bakery.vikingmankotlin.week_05
 import java.lang.annotation.Inherited
 import java.security.MessageDigest
 import kotlin.reflect.KProperty
+import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.full.findAnnotation
+import kotlin.reflect.full.hasAnnotation
+import kotlin.reflect.full.superclasses
 
 fun String.sha256(): String {
     return hashString(this, "SHA-256")
@@ -21,16 +25,28 @@ interface HashAware {
     @Target(AnnotationTarget.PROPERTY)
     annotation class HashCode(val order: Int)
 
-    public fun findAnnotation(kProperty: KProperty<*>) : HashCode? {
-        // TODO findAnnotation HashCode
-        return null
+    @ExperimentalStdlibApi
+    fun findAnnotation(kProperty: KProperty<*>): HashCode? {
+        return this::class.superclasses.find { it.hasAnnotation<HashCode>() }?.findAnnotation()
     }
 
+    @ExperimentalStdlibApi
     fun hasAnnotation(kProperty: KProperty<*>): Boolean {
-        // TODO hasAnnotation HashCode
-        return false
+        return findAnnotation(kProperty) != null
     }
-    fun getHash() : String {
+
+    @ExperimentalStdlibApi
+    private fun propertyToString(kProperty: KProperty<*>) = getPrefix() + kProperty.getter.call(this) + findAnnotation(kProperty)?.order
+
+    @ExperimentalStdlibApi
+    fun getHash(): String {
+        return this::class.declaredMemberProperties
+                .asSequence()
+                .filter(this::hasAnnotation)
+                .map(this::propertyToString)
+                .joinToString()
+                .apply { sha256() }
+
         // TODO 클래스의 모든 프로퍼티의 값을 getPrefix + value + order 형태 String 으로 생성하고의 List 로 모으고 joinToString -> sha256 리턴한다.
         /**
          * ex) Person / PersonHashAware
@@ -48,17 +64,19 @@ interface HashAware {
         return ""
     }
 
-    fun getPrefix() : String = this::class.simpleName ?: ""
+    fun getPrefix(): String = this::class.simpleName ?: ""
 
 }
+
 interface PersonHashAware : HashAware {
     @HashAware.HashCode(1)
-    val name : String
+    val name: String
+
     @HashAware.HashCode(2)
     val age: Int
 }
 
 class Person(override val name: String, override val age: Int) : PersonHashAware {
-    lateinit var address : String
-    override fun getPrefix() : String = "person"
+    lateinit var address: String
+    override fun getPrefix(): String = "person"
 }
