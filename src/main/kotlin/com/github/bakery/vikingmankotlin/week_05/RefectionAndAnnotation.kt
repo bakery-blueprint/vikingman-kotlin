@@ -27,7 +27,10 @@ interface HashAware {
 
     @ExperimentalStdlibApi
     fun findAnnotation(kProperty: KProperty<*>): HashCode? {
-        return this::class.superclasses.find { it.hasAnnotation<HashCode>() }?.findAnnotation()
+        return this::class.superclasses
+                .flatMap { it.declaredMemberProperties }
+                .filter { kProperty.name == it.name }
+                .find { it.hasAnnotation<HashCode>() }?.findAnnotation()
     }
 
     @ExperimentalStdlibApi
@@ -61,7 +64,6 @@ interface HashAware {
          * 의 형태로 String이 만들어 지고 List로 모으고 joinToString을 하면 "personhotire1 person222" 의 형태로 만들어지고 personhotire1 person222의 sha256를 리턴한다.
          *
          */
-        return ""
     }
 
     fun getPrefix(): String = this::class.simpleName ?: ""
