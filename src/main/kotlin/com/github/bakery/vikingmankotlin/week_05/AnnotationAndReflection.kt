@@ -1,4 +1,4 @@
-package com.github.hotire.springbootkotlin.books.in_action.ex10
+package com.github.bakery.vikingmankotlin.week_05
 
 import java.lang.annotation.Inherited
 import java.security.MessageDigest
