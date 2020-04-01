@@ -3,6 +3,8 @@ package com.github.bakery.vikingmankotlin.week_05
 import java.lang.annotation.Inherited
 import java.security.MessageDigest
 import kotlin.reflect.KProperty
+import kotlin.reflect.full.findAnnotation
+import kotlin.reflect.full.memberProperties
 
 fun String.sha256(): String {
     return hashString(this, "SHA-256")
@@ -22,15 +24,35 @@ interface HashAware {
     annotation class HashCode(val order: Int)
 
     public fun findAnnotation(kProperty: KProperty<*>) : HashCode? {
-        // TODO findAnnotation HashCode
-        return null
+        // TODO findAnnotation
+
+        val findAnnotation = kProperty.findAnnotation<HashCode>()
+
+        return if(findAnnotation is HashCode) findAnnotation else null
     }
 
     fun hasAnnotation(kProperty: KProperty<*>): Boolean {
         // TODO hasAnnotation HashCode
-        return false
+        val findAnnotation = kProperty.findAnnotation<HashCode>()
+        return findAnnotation is HashCode
     }
     fun getHash() : String {
+
+
+
+//        val hasCodeElement = this::class.memberProperties
+//                .mapNotNull { findAnnotation(it) }
+//                .sortedBy { it.order }
+
+        val hasCodeElement = this::class.memberProperties
+                .filter { hasAnnotation(it) }
+                .filter { it != null }
+                .map { /* string 합치기*/}
+
+                // 아몰랑~
+
+
+
         // TODO 클래스의 모든 프로퍼티의 값을 getPrefix + value + order 형태 String 으로 생성하고의 List 로 모으고 joinToString -> sha256 리턴한다.
         /**
          * ex) Person / PersonHashAware
@@ -58,7 +80,14 @@ interface PersonHashAware : HashAware {
     val age: Int
 }
 
-class Person(override val name: String, override val age: Int) : PersonHashAware {
+class Person(@HashAware.HashCode(1)override val name: String, @HashAware.HashCode(2)override val age: Int) : PersonHashAware {
     lateinit var address : String
     override fun getPrefix() : String = "person"
+}
+
+fun main(){
+    val p = Person("demo", 34)
+    p.address = "#3"
+
+    p.getHash()
 }
