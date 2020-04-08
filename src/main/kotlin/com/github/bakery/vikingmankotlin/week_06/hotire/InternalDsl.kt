@@ -83,12 +83,14 @@ class HEADER {
 class BODY {
     val map = mutableMapOf<String, Any>()
 
+    infix fun String.to(value: String) {
+        map[this] = value
+    }
+
     fun put(key: String, value: Any) {
         map[key] = value
     }
 }
-
-fun BODY.to(ey: String, value: Any) = map.put(ey, value)
 
 fun main() {
     val result = Http(RestTemplate())
