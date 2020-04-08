@@ -2,8 +2,16 @@ package com.github.bakery.vikingmankotlin.week_06
 
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
-import org.springframework.http.MediaType
 import org.springframework.web.client.RestTemplate
+
+/**
+ *  type-safe builder(수신객체지정 람다)
+ *  재사용 빌더
+ *  invoke(클래스 인스턴스를 함수처럼)
+ *  중위호출 연쇄
+ *  원시타입 확장함수
+ *  멤버 확장함수
+ */
 
 class Http(private val restTemplate: RestTemplate) {
     private lateinit var url: String
@@ -22,8 +30,8 @@ class POST : METHOD {
     private val header = HEADER()
     private val body = BODY()
 
-    //TODO: this.body에 적용할 함수를 받아와 실행해주는 메서드를 구현해보기.
-    fun body()
+    //TODO: this.body에 적용할 수신객체지정람다를 받아와 실행해주는 메서드를 구현해보기.
+//    fun body()
 
     override fun header(block: HEADER.() -> Unit) {
         header.block()
@@ -56,15 +64,17 @@ class BODY {
 }
 
 fun main() {
-    val result = Http(RestTemplate())
-            .url("localhost:8080/test")
-            .post(String::class.java) {
-                header { put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON) }
-                body {
-                    put("key", "value")
-                    put("what", "say")
-                }
-            }
+//    val result = Http(RestTemplate())
+//            .url("localhost:8080/test")
+//            .post(String::class.java) {
+//                header {
+//                    put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
+//                }
+//                body {
+//                    put("key", "value")
+//                    put("what", "say")
+//                }
+//            }
 
     //TODO: 이 테스트코드가 동작할 수 있게 URL 클래스를 새로 만들고, Http 클래스를 변경해보기
 //    val http = Http()

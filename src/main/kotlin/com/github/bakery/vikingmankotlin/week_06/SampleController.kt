@@ -14,6 +14,6 @@ class SampleController {
              @RequestBody body: Map<String, String>): ResponseEntity<Any> {
         println("contentType:$contentType")
         body.forEach { (key, value) -> println("$key:$value") }
-        return ResponseEntity.ok().build()
+        return ResponseEntity.ok("success!")
     }
 }
