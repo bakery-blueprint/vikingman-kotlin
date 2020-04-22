@@ -12,7 +12,7 @@ import static java.lang.annotation.ElementType.*;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target(value={CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE, MODULE})
+@Target(value={CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE})
 public @interface MyDeprecated {
     String message();
     ReplaceWith replaceWith() default @ReplaceWith(expression = "");
