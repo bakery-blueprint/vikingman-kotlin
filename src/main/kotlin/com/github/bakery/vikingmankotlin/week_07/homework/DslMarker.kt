@@ -5,7 +5,7 @@ import java.util.*
 
 data class Person(val name: String,
                   val dateOfBirth: Date,
-                  val address: Address?)
+                  val address: List<Address>?)
 
 data class Address(val street: String,
                    val number: Int,
@@ -13,6 +13,7 @@ data class Address(val street: String,
 
 fun person(block: PersonBuilder.() -> Unit): Person = PersonBuilder().apply(block).build()
 
+@PersonMarker
 class PersonBuilder {
 
     var name: String = ""
@@ -20,14 +21,23 @@ class PersonBuilder {
     var dateOfBirth: String = ""
         set(value) { birth = SimpleDateFormat("yyyy-MM-dd").parse(value) }
 
-    private var address: Address? = null
+    private var addresses: List<Address>? = null
 
-    fun address(block: AddressBuilder.() -> Unit) {
-        address = AddressBuilder().apply(block).build()
+    fun addresses(block: ADDRESSES.() -> Unit) {
+        addresses = ADDRESSES().apply(block).getAddresses()
     }
 
-    fun build(): Person = Person(name, birth, address)
+    fun build(): Person = Person(name, birth, addresses)
 
+}
+
+@PersonMarker
+class ADDRESSES(private val addresses: MutableList<Address> = mutableListOf()) {
+    fun address(block: AddressBuilder.() -> Unit) {
+        this.addresses.add(AddressBuilder().apply(block).build())
+    }
+
+    fun getAddresses() = addresses.toList()
 }
 
 
@@ -41,16 +51,18 @@ class AddressBuilder {
 
 }
 
+@DslMarker
+annotation class PersonMarker
+
 fun main(){
     val person = person {
         name = "demo"
         dateOfBirth = "1991-07-6"
-        address {
-            street = "Pungdeokcheon-ro"
-            number = 160
-            city = "Yongin-si"
-        }
-        /*
+//        address {
+//            street = "Pungdeokcheon-ro"
+//            number = 160
+//            city = "Yongin-si"
+//        }
         // TODO 아래 형태로 수정해서 여러개 주소를 받을 수 있게 만드세용
         addresses {
             address {
@@ -64,8 +76,6 @@ fun main(){
                 city = "Seongnam-si"
             }
         }
-        */
-        /*
         // TODO @DslMarker 를 사용해 의도한 dsl 문법이 깨지지 않게 정의하시오
         addresses {
             address {
@@ -77,7 +87,6 @@ fun main(){
                 city = "Paris"
             }
         }
-        */
 
     }
 }
