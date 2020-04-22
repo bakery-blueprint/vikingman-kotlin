@@ -65,6 +65,12 @@
             <artifactId>jackson-module-kotlin</artifactId>
             <version>2.10.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core</artifactId>
+            <version>1.0.1</version>
+        </dependency>
     </dependencies>
     <pluginRepositories>
         <pluginRepository>
