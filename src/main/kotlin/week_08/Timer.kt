@@ -1,12 +1,25 @@
 package week_08
 
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.text.SimpleDateFormat
 import java.util.*
 
 val simpleDateFormat: SimpleDateFormat = SimpleDateFormat("mm:ss", Locale.KOREA)
 
+const val unit = 1000L
 fun timer(timerMillis: Long, timerStartTime: Long) {
-//println("now ${simpleDateFormat.format(남은 초)}")
+    runBlocking {
+        var leftMillis = timerMillis
+        launch {
+            while (leftMillis > 0) {
+                println("now ${simpleDateFormat.format(Date(leftMillis))}")
+                leftMillis -= unit
+                delay(unit)
+            }
+        }
+    }
 }
 
 fun main() {
