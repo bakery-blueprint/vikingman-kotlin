@@ -3,6 +3,9 @@ package com.github.bakery.vikingmankotlin.week_07.homework
 import java.text.SimpleDateFormat
 import java.util.*
 
+@DslMarker
+annotation class PersonDsl
+
 data class Person(val name: String,
                   val dateOfBirth: Date,
                   val address: Address?)
@@ -21,9 +24,14 @@ class PersonBuilder {
         set(value) { birth = SimpleDateFormat("yyyy-MM-dd").parse(value) }
 
     private var address: Address? = null
+    private val addresses: MutableList<Address> = mutableListOf()
 
     fun address(block: AddressBuilder.() -> Unit) {
         address = AddressBuilder().apply(block).build()
+    }
+
+    fun addresses(block: AddressBuilder.() -> Unit) {
+        addresses.add(AddressBuilder().apply(block).build())
     }
 
     fun build(): Person = Person(name, birth, address)
@@ -31,6 +39,13 @@ class PersonBuilder {
 }
 
 
+class ADDRESSES: ArrayList<Address>() {
+    fun address(block: AddressBuilder.() -> Unit) {
+        add(AddressBuilder().apply(block).build())
+    }
+}
+
+@PersonDsl
 class AddressBuilder {
 
     var street: String = ""
@@ -50,8 +65,6 @@ fun main(){
             number = 160
             city = "Yongin-si"
         }
-        /*
-        // TODO 아래 형태로 수정해서 여러개 주소를 받을 수 있게 만드세용
         addresses {
             address {
                 street = "Pungdeokcheon-ro"
@@ -64,20 +77,7 @@ fun main(){
                 city = "Seongnam-si"
             }
         }
-        */
-        /*
-        // TODO @DslMarker 를 사용해 의도한 dsl 문법이 깨지지 않게 정의하시오
-        addresses {
-            address {
-                addresses {
-                    name = "Mary"
-                }
-                street = "Dev Avenue"
-                number = 42
-                city = "Paris"
-            }
-        }
-        */
-
     }
+
+    println(person)
 }

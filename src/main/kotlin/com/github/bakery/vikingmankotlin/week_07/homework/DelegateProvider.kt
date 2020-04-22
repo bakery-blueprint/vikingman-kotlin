@@ -1,14 +1,14 @@
 package com.github.bakery.vikingmankotlin.week_07.homework
 
 
-// TODO DelegateProvider 기능을 사용해서 profile에 따른 datasource 를 가지고 오게 만들어 보자(내용은 자유~)
+val datasourceProvider = mapOf("prod" to mapOf("name" to "jaehyun"), "dev" to mapOf("name" to "demo"))
 
-val datasource = mapOf("prod" to mapOf("name" to "jaehyun"), "dev" to mapOf("name" to "demo"))
-
-
+class DataSourceFactory(val profile : String){
+    val datasource by datasourceProvider[profile]
+}
 
 
 fun main(){
-//    val dataSourceFactory = DataSourceFactory("prod")
-//    println(dataSourceFactory.datasource.get("name"))
+    val dataSourceFactory = DataSourceFactory("prod")
+    print(dataSourceFactory.datasource.get(1))
 }
