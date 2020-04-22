@@ -5,8 +5,20 @@ import java.util.*
 
 val simpleDateFormat: SimpleDateFormat = SimpleDateFormat("mm:ss", Locale.KOREA)
 
+
+
 fun timer(timerMillis: Long, timerStartTime: Long) {
-//println("now ${simpleDateFormat.format(남은 초)}")
+
+    val endTime = (timerMillis/1000).toInt()
+    for(i in 1 .. (endTime+1)){
+        GlobalScope.launch {
+            delay(1000 * (endTime+1-i))
+            println("now ${simpleDateFormat.format(i)}")
+        }
+    }
+
+
+
 }
 
 fun main() {
