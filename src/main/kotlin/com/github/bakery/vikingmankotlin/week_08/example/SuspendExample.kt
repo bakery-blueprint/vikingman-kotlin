@@ -1,4 +1,4 @@
-package week_08.example
+package com.github.bakery.vikingmankotlin.week_08.example
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
