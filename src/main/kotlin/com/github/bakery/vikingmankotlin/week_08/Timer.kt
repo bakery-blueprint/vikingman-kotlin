@@ -1,4 +1,4 @@
-package week_08
+package com.github.bakery.vikingmankotlin.week_08
 
 import java.text.SimpleDateFormat
 import java.util.*
